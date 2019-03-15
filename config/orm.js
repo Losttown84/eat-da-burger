@@ -31,7 +31,6 @@ var orm = {
   },
   insertOne: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
-
     queryString += " (";
     queryString += cols.toString();
     queryString += ") ";
@@ -46,9 +45,20 @@ var orm = {
       cb(result);
     });
   }
-}
+  updateOne: function(table, colVals, condition, cb) {
+    var queryString = "UPDATE " + table;
+    queryString += " SET ";
+    queryString += colVals(colVals);
+    queryString += " WHERE ";
+    queryString += condition;
 
-
-
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  }
+};
 
 module.exports = orm;
