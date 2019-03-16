@@ -44,7 +44,7 @@ var orm = {
       }
       cb(result);
     });
-  }
+  },
   updateOne: function(table, colVals, condition, cb) {
     var queryString = "UPDATE " + table;
     queryString += " SET ";

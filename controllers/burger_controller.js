@@ -5,9 +5,12 @@ var burger = require("../models/burger.js");
 
 router.get("/", function(req, res) {
   burger.selectAll (function(data) {
-    var
-  })
-})
+    var object = {
+      burgers: data
+    };
+    res.render("index", object);
+  });
+});
 
 router.post("/burgers", function(req, res) {
   burger.insertOne([
@@ -20,7 +23,13 @@ router.post("/burgers", function(req, res) {
 });
 
 router.put("/burgers/:id", function(req, res) {
-  
-})
+  var condition = "id = " + req.params.id;
+
+  burger.updateOne({
+    devour: true
+  }, condition, function(data) {
+    res.redirect("/");
+  });
+});
 
 module.exports = router;
