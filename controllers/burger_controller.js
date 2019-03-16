@@ -4,15 +4,18 @@ var router = express.Router();
 var burger = require("../models/burger.js");
 
 router.get("/", function(req, res) {
+  // res.send("hello")
   burger.selectAll (function(data) {
     var object = {
       burgers: data
     };
+    console.log("Object", object)
     res.render("index", object);
   });
 });
 
 router.post("/burgers", function(req, res) {
+  console.log("About to save", req.body);
   burger.insertOne([
     "burger_name"
   ], [
