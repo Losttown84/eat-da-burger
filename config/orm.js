@@ -48,7 +48,7 @@ var orm = {
   updateOne: function(table, colVals, condition, cb) {
     var queryString = "UPDATE " + table;
     queryString += " SET ";
-    queryString += colVals(colVals);
+    queryString += sqlObject(colVals);
     queryString += " WHERE ";
     queryString += condition;
 
